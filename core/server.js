@@ -1,3 +1,23 @@
+/**
+    This file is part of BotAnalyzer.
+
+    BotAnalyzer is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    BotAnalyzer is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with BotAnalyzer.  If not, see <https://www.gnu.org/licenses/>
+ */
+/**
+ * @author Samuel de Oliveira Gamito.
+ * @since  2019.09.21
+ */
 const   fs              = require('fs'),
         mongo_cliente   = require('mongodb').MongoClient,
         express         = require('express'),
@@ -43,7 +63,7 @@ function custom_uid() {
 /** Função para converter um vetor em um array associativo, a chave index 
  *  do vetor será a posição do valor no array
  * 
- * @param {Vetor com o campo _id } vetor 
+ * @param {Array} vetor 
  */
 function convert_id_to_index(vetor){
     var indexado = {};
@@ -60,7 +80,7 @@ function convert_id_to_index(vetor){
 
 /**
  * 
- * @param {Id do upload dos logs(elemento group no banco)} uid 
+ * @param {int} uid 
  */
 async function estatisticas(uid){
     var temp_name = "temp_"+uid+".tmp";  //Cria nome temporário para alocar o arquivo com os logs
