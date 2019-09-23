@@ -1,33 +1,75 @@
-# BotAnalizer
+# BotAnalizer - API
 
 # Getting Started
 
-##### Prerequisites
+## Prerequisites
+- Python 3
+- Node.js
+- Numpy
+- Pandas
+- NLTK
+- WordCloud
+- Git
+- NPM
+- Pip
 
-##### Installing
-
+## Installing
+Download and install pip
+```
+> wget https://bootstrap.pypa.io/get-pip.py
+> python3 get-pip.py
+```
+Install python dependences 
+```
+> sudo python3 -m pip install numpy
+> sudo python3 -m pip install pandas
+> sudo python3 -m pip install nltk
+> sudo python3 -m pip install wordcloud
+```
+Configure NLTK
+```
+> python3 -m nltk.downloader all 
+```
+Download and install Node.Js
+-  [Download](https://nodejs.org/en/download/)
 # Deployment
 
-------
+Deploy on foreground:
+```
+> npm run start
+```
+Deploy on background:
+    
+In this mode the output will be redirect to output.log .
+```
+> npm run server
+```
+Running with forever :
+Inside misc folder, have a file named deploy.json
 
-
+```
+> cd ../misc
+> forever start
+``` 
 
 # Built With
-
-
+- [NodeJs](https://nodejs.org/en/) - JavaScript framework used to create a web service
+- [NLTK](https://www.nltk.org/) - Pytohn library to process natural language
+- [Pandas](http://www.padas.org.uk/) - Pytohn library used for data manipulation
+- [NumPy](https://numpy.org/) - Python library to manipulate arrays
+- [WordCloud](https://github.com/amueller/word_cloud) - Python library to crate word cloud
 
 # Contributing
 
-- **Samuel de Oliveira Gamito** - 
-
-  See also the list of contributors who participated in this project
 
 # Versioning
 
 
 
 # Authors
+- **Samuel de Oliveira Gamito** - 
 
+  See also the list of contributors who participated in this project
 
 # License 
 

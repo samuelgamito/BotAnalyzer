@@ -4,7 +4,7 @@
   "description": "This is a project do receive a log from chatter bot and create statistics from conversation",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server" : "nohup node server.js > output.log &"
   },
   "repository": {
     "type": "git",
