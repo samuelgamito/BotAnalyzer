@@ -27,5 +27,10 @@ jobs:
     - run: npm install --package-lock --prefix ./dashboard/ 
     - run: npm ci --prefix ./dashboard/
     - run: npm run build --if-present --prefix ./dashboard/
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: dist
+        path: dist
       env:
         CI: true
