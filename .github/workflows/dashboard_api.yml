@@ -37,4 +37,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: dashboard_api_artifact
-          path: target/dashboard_api/dashboard_api.tar.gz
+          path: target/dashboard_api

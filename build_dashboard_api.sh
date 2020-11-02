@@ -27,5 +27,10 @@ cp -f package.json $TARGET_PATH
 
 echo "Download and packaging production dependecies"
 cd $TARGET_PATH
-npm install --only=prod
 tar -czf dashboard_api.tar.gz *
+
+
+echo "Building docker container"
+mkdir docker
+mv dashboard_api.tar.gz docker
+cp "${BASE_PATH}/docker/nodejs/Dockerfile" "docker"
