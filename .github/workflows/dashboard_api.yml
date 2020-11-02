@@ -6,11 +6,15 @@ name: Dashoard API CI pipeline
 # events but only for the master branch
 on:
   push:
-    -master
+    branches:
+      - master
+    paths:
+      - dashboard_api/**
   pull_request:
-    - master 
-  paths:
-    - dashboard_api/**
+    branches:
+      - master 
+    paths:
+      - dashboard_api/**
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
