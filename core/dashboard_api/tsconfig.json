@@ -20,30 +20,5 @@
     "exclude": [
         "node_modules"
     ],
-    "paths": {
-        "@constants/*": [
-            "constants/*"
-        ],
-        "@controllers/*": [
-            "controllers/*"
-        ],
-        "@enums/*": [
-            "enums/*"
-        ],
-        "@exceptions/*": [
-            "exceptions/*"
-        ],
-        "@helpers/*": [
-            "helpers/*"
-        ],
-        "@models/*": [
-            "models/*"
-        ],
-        "@repositories/*": [
-            "repositories/*"
-        ],
-        "@services/*": [
-            "services/*"
-        ]
-    }
+    "paths": {}
 }
