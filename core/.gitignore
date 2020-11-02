@@ -147,7 +147,7 @@ coverage.xml
 # Translations
 *.mo
 *.pot
-
+package-lock.json
 # Django stuff:
 local_settings.py
 db.sqlite3
