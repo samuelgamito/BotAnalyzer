@@ -1,6 +1,6 @@
 {
   "name": "botanalyze-core",
-  "version": "1.0.0",
+  "version": "1.5.0",
   "description": "This is a project do receive a log from chatter bot and create statistics from conversation",
   "main": "server.js",
   "scripts": {
