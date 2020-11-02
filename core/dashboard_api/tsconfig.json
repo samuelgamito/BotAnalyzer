@@ -1,0 +1,49 @@
+{
+    "compilerOptions": {
+        "lib": [
+            "es6",
+            "es7"
+        ],
+        "target": "es6",
+        "module": "commonjs",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "outDir": "./build",
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "sourceMap": true
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ],
+    "paths": {
+        "@constants/*": [
+            "constants/*"
+        ],
+        "@controllers/*": [
+            "controllers/*"
+        ],
+        "@enums/*": [
+            "enums/*"
+        ],
+        "@exceptions/*": [
+            "exceptions/*"
+        ],
+        "@helpers/*": [
+            "helpers/*"
+        ],
+        "@models/*": [
+            "models/*"
+        ],
+        "@repositories/*": [
+            "repositories/*"
+        ],
+        "@services/*": [
+            "services/*"
+        ]
+    }
+}

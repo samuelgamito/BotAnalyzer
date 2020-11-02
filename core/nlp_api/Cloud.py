@@ -22,6 +22,8 @@ __email__      = "samuelgamito96@gmail.com"
 __status__     = "Production"
 from nltk import word_tokenize, pos_tag
 from nltk.corpus import wordnet as wn
+from os import path
+import os as os
 import numpy as np
 import pandas as pd
 from wordcloud import WordCloud
@@ -30,6 +32,11 @@ from nltk.corpus import stopwords
 ------------- Classe para criação da palavra de nuvens --------------
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 class Cloud:
+
+    def __init__(self):
+        if path.exists("clouds/") == False:
+            os.mkdir("clouds")
+    
     # Método privado para 
     def __get_colum(self, matrix, i):
         return [row[i] for row in matrix]

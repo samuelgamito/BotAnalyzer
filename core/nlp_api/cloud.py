@@ -30,21 +30,15 @@ import json
 
 
 
-if __name__ == "__main__":
-    sys.stderr.close() #Close error output
+def cloud_service(data_path):
 
     #Carrega a classe 
     cloud = Cloud()
-
-    if(not sys.argv[1] or sys.argv[1] == ""):
-        print("erro")
-
-    #Carrega o argumento 1 contendo o caminho para o arquivp de log
-    data_path = sys.argv[1]
+    
     #Load vectoro to data frame pandas
-    data_frame =  pd.read_json(data_path, orient='records')
+    data_frame =  pd.DataFrame.from_dict(data_path)
 
-    column_questions = data_frame['resposta']
+    column_questions = data_frame['response']
     
     #Gera um número aleatório para atribuir ao nome da nuvem
     name = np.random.randint(1000, 999999)
@@ -55,6 +49,4 @@ if __name__ == "__main__":
     word_cloud.to_file('clouds/%d.png'%(name))
 
     #Imprime o nome na tela para o retorno
-    print ('clouds/%d.png'%(name), end='')
-
-    pass
+    return 'clouds/%d.png'%(name)

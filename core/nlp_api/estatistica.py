@@ -28,19 +28,12 @@ import sys
 import json
 
 
-if __name__ == "__main__":
-    sys.stderr.close() #Close error output
+def create_statistic(data_path):
     #Init classes
     sim = Similarity()
 
-    if(not sys.argv[1] or sys.argv[1] == ""):
-        print("erro")
-
-
-    #Load path from arg
-    data_path = sys.argv[1]
     #Load vectoro to data frame pandas
-    data_frame =  pd.read_json(data_path, orient='records')
+    data_frame =  pd.DataFrame.from_dict(data_path)
 
 
 
@@ -49,9 +42,9 @@ if __name__ == "__main__":
     #Padrão de resposta esperada
     i_dont_know = 'I don\'t know how to respond this'
     for index, row in data_frame.iterrows():
-        val = sim.symmetric_sentence_similarity(i_dont_know, row.resposta)
+        val = sim.symmetric_sentence_similarity(i_dont_know, row.response)
         if(val > 0.88):
-            nao_respondidas.append([row.pergunta, 1 ])
+            nao_respondidas.append([row.input, 1 ])
 
     total_nao_respondidas = len(nao_respondidas)
 
@@ -73,12 +66,11 @@ if __name__ == "__main__":
             i += 1
 
     #Convert Array to Numpy Array
-    np_nao_respondidas = np.array(nao_respondidas)
+    np_nao_respondidas = np.array(nao_respondidas, dtype="O")
     #Sort Numpy Array 
     np_nao_respondidas.sort(axis=0,kind='heapsort')
     #Cut in 10 first
-    top_10 = np_nao_respondidas.tolist()[-10:]
+    top_10 = np_nao_respondidas.tolist()[-10:][::-1]
 
     response = {"total": total_nao_respondidas, "top": top_10}
-    print(json.dumps(response))
-    pass
+    return response

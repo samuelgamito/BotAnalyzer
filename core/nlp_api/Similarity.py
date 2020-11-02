@@ -22,9 +22,12 @@ __email__      = "samuelgamito96@gmail.com"
 __status__     = "Production"
 
 from nltk import word_tokenize, pos_tag
+import nltk as nltk
 from nltk.corpus import wordnet as wn
 import numpy as np
 import pandas as pd
+
+nltk.download('punkt')
 
 class Similarity:
     def penn_to_wn(self, tag):
