@@ -42,4 +42,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: $BUILD_NUMBER
-          path: target/dashboard_api
+          path: target/dashboard_api/dashboard_api.tar.gz
