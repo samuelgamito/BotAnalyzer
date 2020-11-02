@@ -34,7 +34,13 @@ jobs:
       - name: Run build script
         run: sh build_dashboard_api.sh
       
+      - name: Generate build number
+        uses: einaregilsson/build-number@v2 
+        with:
+          token: ${{secrets.github_token}} 
+        run: echo "Build number is $BUILD_NUMBER"
+
       - uses: actions/upload-artifact@v2
         with:
-          name: my-artifact
-          path: target/dashboard_api/dashboard_api.tar.gz
+          name: $BUILD_NUMBER
+          path: target/dashboard_api
