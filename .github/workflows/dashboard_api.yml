@@ -10,6 +10,7 @@ on:
       - master
     paths:
       - dashboard_api/**
+      - .github/workflow/dashboard_api.yml
   pull_request:
     branches:
       - master 
