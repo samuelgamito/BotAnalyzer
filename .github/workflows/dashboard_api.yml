@@ -9,13 +9,14 @@ on:
     branches:
       - master
     paths:
-      - dashboard_api/**
-      - .github/workflow/dashboard_api.yml
+      - 'core/dashboard_api/**''
+      - '.github/workflow/dashboard_api.yml'
   pull_request:
     branches:
       - master 
     paths:
-      - dashboard_api/**
+      - 'core/dashboard_api/**''
+      - '.github/workflow/dashboard_api.yml'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
