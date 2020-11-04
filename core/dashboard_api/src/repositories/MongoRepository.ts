@@ -7,7 +7,8 @@ export class MongoRepository{
     private mongoClient: Promise<MongoClient>;
 
     private DATABASE:string = "bot_analyzer";
-    private COLLECTION:string = "registros"
+    private COLLECTION_REGISTERS:string = "registros";
+    private COLLECTION_STATISTIC:string = "statistic";
 
     constructor(){
 
@@ -21,7 +22,7 @@ export class MongoRepository{
         
         var db:Db = conn.db(this.DATABASE);
         
-        return db.collection(this.COLLECTION).insertMany(payload);
+        return db.collection(this.COLLECTION_REGISTERS).insertMany(payload);
     }
 
     public async getConversationByConvo(id:string){
@@ -50,7 +51,7 @@ export class MongoRepository{
             }            
         ]
 
-        return db.collection(this.COLLECTION).aggregate(aggregateStages).toArray();
+        return db.collection(this.COLLECTION_REGISTERS).aggregate(aggregateStages).toArray();
     }
 
     public async getConversationGroupByWeekDays(id:string){
@@ -82,7 +83,7 @@ export class MongoRepository{
             }         
         ]
 
-        return db.collection(this.COLLECTION).aggregate(aggregateStages).toArray();
+        return db.collection(this.COLLECTION_REGISTERS).aggregate(aggregateStages).toArray();
     }
 
     public async getConversationGroupByHour(id:string){
@@ -114,7 +115,7 @@ export class MongoRepository{
             }       
         ]
 
-        return db.collection(this.COLLECTION).aggregate(aggregateStages).toArray();
+        return db.collection(this.COLLECTION_REGISTERS).aggregate(aggregateStages).toArray();
     }
 
     public async getConversationGroupByMonth(id:string){
@@ -146,15 +147,32 @@ export class MongoRepository{
             }      
         ]
 
-        return db.collection(this.COLLECTION).aggregate(aggregateStages).toArray();
+        return db.collection(this.COLLECTION_REGISTERS).aggregate(aggregateStages).toArray();
     }
 
-    public async findById(id:string, projection: any = {}){
+    public async findConversationById(id:string, projection: any = {}){
         
         var conn:MongoClient = await this.mongoClient;
         var db:Db = conn.db(this.DATABASE);
         
-        return db.collection(this.COLLECTION).find({group:id}).project(projection).toArray();
+        return db.collection(this.COLLECTION_REGISTERS).find({group:id}).project(projection).toArray();
+    }
+
+    public async findStatisticById(id:string, projection: any = {}){
+        
+        var conn:MongoClient = await this.mongoClient;
+        var db:Db = conn.db(this.DATABASE);
+        
+        return db.collection(this.COLLECTION_STATISTIC).findOne({_id:id});
+    }
+
+    public async insertStatisticById(obj:any, id:string){
+        
+        obj["_id"] = id;
+        var conn:MongoClient = await this.mongoClient;
+        var db:Db = conn.db(this.DATABASE);
+        
+        return db.collection(this.COLLECTION_STATISTIC).insertOne(obj);
     }
 
     public async countById(id:string){
@@ -162,7 +180,7 @@ export class MongoRepository{
         var conn:MongoClient = await this.mongoClient;
         var db:Db = conn.db(this.DATABASE);
         
-        return db.collection(this.COLLECTION).find({group:id}).count();
+        return db.collection(this.COLLECTION_REGISTERS).find({group:id}).count();
     }
 
 }

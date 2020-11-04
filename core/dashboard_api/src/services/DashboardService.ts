@@ -46,7 +46,7 @@ export class DashboardService{
             this.mongoRepository.getConversationGroupByWeekDays(id),
             this.mongoRepository.getConversationGroupByHour(id),
             this.mongoRepository.getConversationGroupByMonth(id),
-            this.mongoRepository.findById(id, {input:1, response:1})
+            this.mongoRepository.findConversationById(id, {input:1, response:1})
         ])
         
         let tempGroupByWeekDay:any = this.dataHelper.convertIdToIndex(groupByWeekDay);
@@ -60,13 +60,17 @@ export class DashboardService{
             mes:this.dataHelper.convertToGraphResponseV1(tempGroupByMonth, this.month, 1,12,1)
         };
         
-        let statisticsPrimise = this.nlpRepository.getStatistics(conversation);
+        let estatisticas:any = await this.mongoRepository.findStatisticById(id);
+
+        if(estatisticas == undefined){
+            estatisticas = await this.nlpRepository.getStatistics(conversation);
+            this.mongoRepository.insertStatisticById(estatisticas,id);
+        }
+        
+       
         let imageWordCloud = await this.nlpRepository.getWordCloud(conversation);
         
-        fs.writeFileSync(`${Constants.WORD_CLOUD_IMAGES_PATH}/${wordCloudPath}`, imageWordCloud, 'base64');
-
-
-        let estatisticas = await statisticsPrimise;    
+        fs.writeFileSync(`${Constants.WORD_CLOUD_IMAGES_PATH}/${wordCloudPath}`, imageWordCloud, 'base64'); 
     
         response = {
             utilizacaoFerramenta:toolUtilization,
