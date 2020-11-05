@@ -16,7 +16,10 @@ export class DashboardController{
         this.LOGGER.info("Retriving a dashboard");
         
         try {
-            response.status(200).send(await this.service.getDashboard(request));
+            let dashboard = await this.service.getDashboard(request);
+            response.status(200).send({
+                "dashboard": dashboard
+            });
         } catch (e) {
             console.log(e)
             let err: ErrorType = this.errorsComponent.getError(e.message, e.description);

@@ -1,6 +1,6 @@
 import app from './app';
 
-const port = parseInt(process.env.PORT || '8080')
+const port = parseInt(process.env.PORT || '3030')
 
 const server = new app().Start(port)
   .then(port => console.log(`Server running on port ${port}`))

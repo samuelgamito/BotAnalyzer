@@ -58,7 +58,13 @@ class App{
     this.httpServer.use(bodyParser.json());
     this.httpServer.use(bodyParser.urlencoded({ extended: true }));
     
-    
+    this.httpServer.use(function(req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+      next();
+    });
+  
+
     this.httpServer.get('/', function(req: Request, res: Response) {
         res.send('Hello World!');
     });
