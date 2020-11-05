@@ -24,7 +24,7 @@ jobs:
         run: sh build_dashboard_api.sh
 
       - name: Build release package
-        run: sh build_releas.sh GITHUB_REF
+        run: sh build_release.sh GITHUB_REF
         
       - name: Create Release
         id: create_release 
