@@ -34,8 +34,10 @@ from nltk.corpus import stopwords
 class Cloud:
 
     def __init__(self):
-        if path.exists("clouds/") == False:
-            os.mkdir("clouds")
+        base_dir = os.path.dirname(os.path.realpath(__file__))
+        cloud_dir = "%s/clouds"%(base_dir)
+        if path.exists(cloud_dir) == False:
+            os.mkdir(cloud_dir)
     
     # Método privado para 
     def __get_colum(self, matrix, i):

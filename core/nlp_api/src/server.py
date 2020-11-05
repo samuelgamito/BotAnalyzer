@@ -1,6 +1,7 @@
 from flask import Flask, request, send_file,jsonify
 from cloud import cloud_service
 from estatistica import create_statistic
+import os
 
 app = Flask(__name__)
 
@@ -23,4 +24,6 @@ def statisticController():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    port = 5000 if os.environ.get("port") == None else os.environ.get("port")
+    debug = True if os.environ.get("debug") == None else os.environ.get("debug")
+    app.run(host='0.0.0.0', debug=debug, port=port)

@@ -27,8 +27,6 @@ from nltk.corpus import wordnet as wn
 import numpy as np
 import pandas as pd
 
-nltk.download('punkt')
-
 class Similarity:
     def penn_to_wn(self, tag):
         """ Convert between a Penn Treebank tag to a simplified Wordnet tag """
