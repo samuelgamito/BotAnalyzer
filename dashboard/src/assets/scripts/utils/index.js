@@ -63,12 +63,13 @@ export default (function () {
   })
   function show_dash(id){
     $.ajax({
-      url: `http://localhost:3030/dashboard/${id}`,
+      url: `http://localhost:3030/api/v1/dashboard/${id}`,
       type: "GET",
       method: "GET",
       contentType: "json",
       cache: false,
       success: function(data){
+        console.log(data)
         $.each(data.dashboard.logConversa, (key, value)=>{
           var htmlLog = "";
           value.conversa.forEach( conv =>{
@@ -145,7 +146,7 @@ export default (function () {
     var file = $('.file-upload-input').get(0).files[0];
     formSend.append('log',file);
     $.ajax({
-      url: "http://localhost:3030/upload",
+      url: "http://localhost:3030/api/v1/upload",
       type: "POST",
       method: "POST",
       data: formSend ,
