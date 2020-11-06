@@ -5,6 +5,7 @@ WORKDIR /usr/src/app
 COPY *.tar.gz ./
 
 RUN tar -xf *.tar.gz
+RUN npm install
 
-EXPOSE 8080
+EXPOSE 3030
 CMD [ "npm", "run", "server" ]

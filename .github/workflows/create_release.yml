@@ -21,10 +21,10 @@ jobs:
         run: sh build_dashboard_api.sh
 
       - name: Run build script - NLP API
-        run: sh build_dashboard_api.sh
+        run: sh build_nlp_api.sh
 
       - name: Build release package
-        run: sh build_release.sh GITHUB_REF
+        run: sh build_release.sh ${{ github.ref }}
 
       - uses: actions/upload-artifact@v2
         with:

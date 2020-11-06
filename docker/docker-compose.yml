@@ -1,4 +1,9 @@
 version: '3'
+
+networks:
+    bot-analyzer-networks:
+      driver: bridge  
+
 services: 
     database:
         image: 'mongo'
@@ -9,3 +14,30 @@ services:
             - ./mongo-volume:/data/db
         ports: 
             - '27017-27019:27017-27019'
+
+    dashboard-api:
+        build: ./dashboard_api/docker
+        image: dashboard/api:latest
+        container_name: dashboard-api
+        ports:
+            - 3030:3030
+        networks:
+            - bot-analyzer-networks
+    
+    nlp-api:
+        build: ./nlp_api/docker
+        image: nlp/api:latest
+        container_name: nlp-api
+        ports:
+            - 5000:5000
+        networks:
+            - bot-analyzer-networks
+
+    dashboard:
+        build: ./dashboard_adminator/docker
+        image: dashboard-adminator/api:latest
+        container_name: dashboard-adminator
+        ports:
+            - 80:80
+        networks:
+            - bot-analyzer-networks
