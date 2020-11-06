@@ -25,31 +25,17 @@ jobs:
 
       - name: Build release package
         run: sh build_release.sh GITHUB_REF
-        
-      - name: Create Release
-        id: create_release 
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body_path: CHANGELOG.md
-          draft: false
-          prerelease: false
 
       - uses: actions/upload-artifact@v2
         with:
           name: dashboard_api_artifact
           path: target/*.tar.gz
   
-      - name: Upload Release Asset
-        id: upload-release-asset 
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload release artifact
+        uses: svenstaro/upload-release-action@v2
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ./my-artifact.zip
-          asset_name: my-artifact.zip
-          asset_content_type: application/zip
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: target/*.tar.gz
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true
