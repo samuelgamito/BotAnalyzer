@@ -24,7 +24,7 @@ jobs:
         run: sh build/build_nlp_api.sh
 
       - name: Build release package
-        run: sh build/build_release.sh ${{ github.ref }}
+        run: bash build/build_release.sh ${{ github.ref }}
 
       - uses: actions/upload-artifact@v2
         with:
