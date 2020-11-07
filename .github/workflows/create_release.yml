@@ -15,16 +15,16 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run build script - Dashboard
-        run: sh build_dashboard_adminator.sh
+        run: sh build/build_dashboard_adminator.sh
 
       - name: Run build script - Dashboard API
-        run: sh build_dashboard_api.sh
+        run: sh build/build_dashboard_api.sh
 
       - name: Run build script - NLP API
-        run: sh build_nlp_api.sh
+        run: sh build/build_nlp_api.sh
 
       - name: Build release package
-        run: sh build_release.sh ${{ github.ref }}
+        run: sh build/build_release.sh ${{ github.ref }}
 
       - uses: actions/upload-artifact@v2
         with:
